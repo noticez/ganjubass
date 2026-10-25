@@ -213,206 +213,6 @@ button {
 
 
 
-/* =========================
-   ALBUMS SECTION
-========================= */
-.albums-section {
-    padding: 48px 16px;
-}
-
-
-/* =========================
-   GRID
-========================= */
-
-.album-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-auto-rows: minmax(220px, auto);
-    gap: clamp(8px, 1vw, 14px);
-}
-
-/* =========================
-   ALBUM CARDS
-========================= */
-
-.album-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-
-    min-width: 0;
-    min-height: 220px;
-    padding: clamp(12px, 1.2vw, 18px);
-
-    position: relative;
-    overflow: hidden;
-
-    background: var(--color-paper);
-    background-color: var(--color-paper);
-    color: var(--color-dark);
-
-    transition: background 300ms ease,
-                color 300ms ease;
-}
-
-.album-card:hover {
-    background: #747471;
-    color: #e6e6e0;
-}
-
-.album-featured {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-.album-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
-
-    font-family: "HelveticaMonospacedW1G-Rg", monospace;
-    font-size: clamp(12px, 1vw, 12px);
-    text-transform: uppercase;
-}
-
-
-.album-label span {
-    min-width: 0;
-}
-
-.album-card h2 {
-    position: relative;
-    z-index: 1;
-
-    margin: 10px 0;
-    max-width: 100%;
-
-    font-family: "HelveticaNowDisplay-Black", sans-serif;
-    font-size: clamp(24px, 2vw, 32px);
-    font-weight: 900;
-
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-    overflow-wrap: anywhere;
-    text-transform: uppercase;
-}
-
-.album-featured h2 {
-    font-size: clamp(34px, 4.4vw, 48px);
-}
-
-/* =========================
-   ARTWORK PLACEHOLDERS
-========================= */
-
-.album-art {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    align-self: flex-end;
-    flex-shrink: 0;
-
-    width: clamp(100px, 65%, 180px);
-    aspect-ratio: 1 / 1;
-
-    margin-top: auto;
-
-}
-.album-art img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.album-featured .album-art {
-    width: min(65%, 360px);
-    margin-top: 24px;
-}
-
-
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 800px) {
-    .album-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-rows: minmax(200px, auto);
-    }
-
-    .album-featured {
-        grid-column: span 2;
-        grid-row: span 1;
-        min-height: 360px;
-    }
-
-    .album-featured h2 {
-        font-size: clamp(38px, 7vw, 58px);
-    }
-
-    .album-card h2 {
-        font-size: clamp(20px, 3vw, 28px);
-    }
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 480px) {
-    .albums-section {
-        padding: 48px 12px;
-    }
-
-
-    .album-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-        grid-auto-rows: minmax(170px, auto);
-    }
-
-    .album-card {
-        min-height: 170px;
-        padding: 10px;
-    }
-
-    .album-featured {
-        min-height: 300px;
-    }
-
-    .album-featured h2 {
-        font-size: clamp(32px, 9vw, 44px);
-    }
-
-    .album-card h2 {
-        font-size: clamp(17px, 4.5vw, 22px);
-    }
-
-    .album-top {
-        font-size: 11px;
-    }
-
-    .album-art {
-        width: 60%;
-        min-width: 65px;
-    }
-
-    .album-featured .album-art {
-        width: 65%;
-    }
-}
-
-
-
-
 
 .site-footer {
   margin-top: 80px;
@@ -820,45 +620,86 @@ button {
     }
 }
 
-
-/* =========================================================
-   MOTION (GSAP + Lenis)
-========================================================= */
-
-/* Lenis: обов'язкові стилі */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
-
-/* Початковий стан "до анімації".
-   Клас .js ставиться в <head> і знімається, якщо GSAP не завантажився
-   або користувач просить reduced motion — тоді все просто видно. */
-.js .header-word,
-.js .header-button,
-.js .last-updated,
-.js .album-card,
-.js .footer-brand,
-.js .footer-info,
-.js .footer-nav,
-.js .footer-bottom,
-.js .error-top,
-.js .error-eyebrow,
-.js .error-code,
-.js .error-message,
-.js .error-actions,
-.js .error-bottom {
-    opacity: 0;
-    visibility: hidden;
+.artist-page {
+    width: 100%;
 }
 
-.js .error-divider {
-    transform: scaleX(0);
-    transform-origin: left center;
+.artist-preview {
+    min-height: 80vh;
+    box-sizing: border-box;
+    padding: 4rem 2rem 3rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    overflow: hidden;
 }
 
-/* Обкладинка "осідає" всередині рамки — рамка її обрізає */
-.album-art { overflow: hidden; }
+.artist-name {
+    font-family: 'Helvetica';
+    color: var(--color-dark);
+    margin: 0;
+    font-size: clamp(3rem, 13vw, 13rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 0.75;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    text-align: center;
+}
 
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
+.albums {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 84rem;
+    
+}
+
+.album {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+.album img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder colors */
+
+.album-1  { background: #684747; }
+.album-2  { background: #52684b; }
+.album-3  { background: #485b79; }
+.album-4  { background: #776444; }
+.album-5  { background: #684e72; }
+.album-6  { background: #47716d; }
+.album-7  { background: #80534b; }
+.album-8  { background: #626747; }
+.album-9  { background: #485e66; }
+.album-10 { background: #765c68; }
+.album-11 { background: #5e527c; }
+.album-12 { background: #796d50; }
+
+.artist-content {
+    min-height: 200vh;
+    background: #383838;
+}
+
+@media (max-width: 768px) {
+    .artist-preview {
+        padding: 3rem 1rem 2rem;
+        gap: 2rem;
+    }
+
+    .albums {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
 }
